@@ -1,0 +1,835 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="zh-CN">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2">
+
+<link rel="stylesheet" href="/css/main.css?v=7.0.1">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=7.0.1">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=7.0.1">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=7.0.1">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=7.0.1" color="#222">
+
+
+
+
+
+
+
+<script id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '7.0.1',
+    sidebar: {"position":"left","display":"post","offset":12,"onmobile":false,"dimmer":false},
+    back2top: true,
+    back2top_sidebar: false,
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  <meta name="description" content="DAV介绍培训目标 介绍DVA是什么？ DVA解决什么问题？怎么解决的？ 一个DVA项目的组成，及各部分是干什么的？ 使用DVA开发功能的工作流是什么样的？ 我们还增加了哪些功能去完善项目的开发？  DVA是什么？DVA是一个打包了redux，redux-saga的数据流方案。 为了方便开发，同时内置了fetch，react-router。 特性 易学易用，仅有 6 个 api，对 redux 用">
+<meta name="keywords" content="react">
+<meta property="og:type" content="article">
+<meta property="og:title" content="DAV介绍">
+<meta property="og:url" content="https://goaheadhj.github.io/2019/03/06/DAV介绍/index.html">
+<meta property="og:site_name" content="Huang Jun&#39;Blog">
+<meta property="og:description" content="DAV介绍培训目标 介绍DVA是什么？ DVA解决什么问题？怎么解决的？ 一个DVA项目的组成，及各部分是干什么的？ 使用DVA开发功能的工作流是什么样的？ 我们还增加了哪些功能去完善项目的开发？  DVA是什么？DVA是一个打包了redux，redux-saga的数据流方案。 为了方便开发，同时内置了fetch，react-router。 特性 易学易用，仅有 6 个 api，对 redux 用">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="evernotecid://66FCE3D6-1CCF-4DB4-B594-C4B3F5B62AE3/appyinxiangcom/21866890/ENResource/p1">
+<meta property="og:updated_time" content="2019-03-06T15:51:42.806Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="DAV介绍">
+<meta name="twitter:description" content="DAV介绍培训目标 介绍DVA是什么？ DVA解决什么问题？怎么解决的？ 一个DVA项目的组成，及各部分是干什么的？ 使用DVA开发功能的工作流是什么样的？ 我们还增加了哪些功能去完善项目的开发？  DVA是什么？DVA是一个打包了redux，redux-saga的数据流方案。 为了方便开发，同时内置了fetch，react-router。 特性 易学易用，仅有 6 个 api，对 redux 用">
+<meta name="twitter:image" content="evernotecid://66FCE3D6-1CCF-4DB4-B594-C4B3F5B62AE3/appyinxiangcom/21866890/ENResource/p1">
+
+
+
+
+
+
+  <link rel="canonical" href="https://goaheadhj.github.io/2019/03/06/DAV介绍/">
+
+
+
+<script id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>DAV介绍 | Huang Jun'Blog</title>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .motion-element,
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-title { opacity: initial; }
+
+  .use-motion .logo,
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Huang Jun'Blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="切换导航栏">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>首页</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-tags">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br>标签</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-categories">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/categories/" rel="section"><i class="menu-item-icon fa fa-fw fa-th"></i> <br>分类</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档</a>
+
+  </li>
+
+      
+      
+    </ul>
+  
+
+  
+
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+            
+
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://goaheadhj.github.io/2019/03/06/DAV介绍/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Huang Jun">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Huang Jun'Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">DAV介绍
+
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2019-03-06 23:02:03 / 修改时间：23:51:42" itemprop="dateCreated datePublished" datetime="2019-03-06T23:02:03+08:00">2019-03-06</time>
+            
+
+            
+              
+
+              
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/技术/" itemprop="url" rel="index"><span itemprop="name">技术</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="DAV介绍"><a href="#DAV介绍" class="headerlink" title="DAV介绍"></a>DAV介绍</h1><h2 id="培训目标"><a href="#培训目标" class="headerlink" title="培训目标"></a>培训目标</h2><ol>
+<li>介绍DVA是什么？</li>
+<li>DVA解决什么问题？怎么解决的？</li>
+<li>一个DVA项目的组成，及各部分是干什么的？</li>
+<li>使用DVA开发功能的工作流是什么样的？</li>
+<li>我们还增加了哪些功能去完善项目的开发？</li>
+</ol>
+<h3 id="DVA是什么？"><a href="#DVA是什么？" class="headerlink" title="DVA是什么？"></a>DVA是什么？</h3><p>DVA是一个打包了redux，redux-saga的数据流方案。 为了方便开发，同时内置了fetch，react-router。</p>
+<h4 id="特性"><a href="#特性" class="headerlink" title="特性"></a>特性</h4><ul>
+<li>易学易用，仅有 6 个 api，对 redux 用户尤其友好</li>
+<li>elm 概念，通过 reducers, effects 和 subscriptions 组织 model</li>
+<li>插件机制，比如 dva-loading 可以自动处理 loading 状态，不用一遍遍地写 showLoading 和 hideLoading</li>
+<li>支持 HMR，基于 babel-plugin-dva-hmr 实现 components、routes 和 models 的 HMR</li>
+</ul>
+<h4 id="DVA解决什么问题？"><a href="#DVA解决什么问题？" class="headerlink" title="DVA解决什么问题？"></a>DVA解决什么问题？</h4><h5 id="问题"><a href="#问题" class="headerlink" title="问题"></a>问题</h5><p>将data的的状态变化过程，从view中剥离出来。使表现和状态管理分离，各层的功能更加单一。</p>
+<h5 id="解决方案"><a href="#解决方案" class="headerlink" title="解决方案"></a>解决方案</h5><p>使用redux管理data，使用saga调度action。</p>
+<h4 id="DVA项目的基本组成"><a href="#DVA项目的基本组成" class="headerlink" title="DVA项目的基本组成"></a>DVA项目的基本组成</h4><h5 id="项目的目录结构"><a href="#项目的目录结构" class="headerlink" title="项目的目录结构"></a>项目的目录结构</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">-- src</span><br><span class="line">  -- assets // 代码中，通过CSS或者JS引入的静态文件。</span><br><span class="line">  -- components // 和redux无关的通用组件。react组件</span><br><span class="line">  -- models // 状态管理模块。dva的核心功能部分。javascript对象</span><br><span class="line">  -- routes // 路由对应的入口组件。react组件</span><br><span class="line">  -- services // api请求的模块。es模块</span><br><span class="line">  -- utils // 通用的工具方法。es模块</span><br></pre></td></tr></table></figure>
+<p><strong>services</strong><br>将所有的api请求单独抽取出来作为一层，全部放到services中管理起来。可以参照rest风格，按不同的资源类型来组织api请求，将同一类的资源操作放在一个文件里。<br>因为所有的api请求都是异步请求，所以可以将所有的api请求方法都写成async函数，使用同步的方式调用。</p>
+<p><strong>routes</strong><br>routes中的文件都是一个react组件，每一个组件对应了一个url路由路径。每个组件作为对应路由的入口，同时作为redux中的container组件，和redux进行关联， 为这个页面下的字组件提供数据的入口。</p>
+<p><strong>models</strong><br>每个model都是一个javascript对象，用来管理一个路由页面下的页面数据和状态。</p>
+<p>这个对象有这样几个属性</p>
+<ul>
+<li>namespace - 表示在全局state上的key</li>
+<li>state - 表示这个model所管理数据的初始值</li>
+<li>reducers - 等同于 redux 里的 reducer，接收 action，同步更新 state</li>
+<li>effects - 处理异步action的方法。通常将一个完整的事务操作封装成一个effect。每个effect是一个generator函数，当通过effect的名字调用effect时，dva会自动执行这effect</li>
+</ul>
+<h5 id="工作原理"><a href="#工作原理" class="headerlink" title="工作原理"></a>工作原理</h5><p><img src="evernotecid://66FCE3D6-1CCF-4DB4-B594-C4B3F5B62AE3/appyinxiangcom/21866890/ENResource/p1" alt="bce2b927616d6004d6a5135ff3f20c54.png"></p>
+<h3 id="DVA开发的工作流"><a href="#DVA开发的工作流" class="headerlink" title="DVA开发的工作流"></a>DVA开发的工作流</h3><ol>
+<li>在routes中创建路由组件。</li>
+<li>在components中创建UI组件。</li>
+<li>在models中创建model。</li>
+<li>在route中关联model。</li>
+<li>在component中，通过dispatch，发送action给model中的effect和reducer。</li>
+</ol>
+<h3 id="在开发中继续完善DVA"><a href="#在开发中继续完善DVA" class="headerlink" title="在开发中继续完善DVA"></a>在开发中继续完善DVA</h3><h4 id="完善创建action的过程。"><a href="#完善创建action的过程。" class="headerlink" title="完善创建action的过程。"></a>完善创建action的过程。</h4><p>在dva中，发送action到model中的方式，是通过将model中的effect或者reducer的方法名作为字符串传递给dispatch。这种通过字符串控制代码逻辑的方式非常容易出错，并且不容排错，所以这通过一个工具方法createAction来创建model中提供的action，然后将这些action作为model提供的api，暴露出来。</p>
+<h4 id="增加请求数据时的动态类型检查"><a href="#增加请求数据时的动态类型检查" class="headerlink" title="增加请求数据时的动态类型检查"></a>增加请求数据时的动态类型检查</h4><p>在请求后台接口时，事先定义好约定的数据模型。在获得服务端返回数据时，对返回的数据做类型检查，如果和事先约定的数据类型不一致，提前将错误暴露出来。</p>
+
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/react/" rel="tag"># react</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/03/06/hello-world/" rel="next" title="Hello World">
+                <i class="fa fa-chevron-left"></i> Hello World
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+  </div>
+
+
+          </div>
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">Huang Jun</p>
+              <div class="site-description motion-element" itemprop="description"></div>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">2</span>
+                    <span class="site-state-item-name">日志</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-categories">
+                  
+                    
+                      <a href="/categories/">
+                    
+                  
+                    
+                    
+                      
+                    
+                    <span class="site-state-item-count">1</span>
+                    <span class="site-state-item-name">分类</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  
+                    
+                      <a href="/tags/">
+                    
+                  
+                    
+                    
+                      
+                    
+                    <span class="site-state-item-count">1</span>
+                    <span class="site-state-item-name">标签</span>
+                  </a>
+                </div>
+              
+            </nav>
+          
+
+          
+
+          
+
+          
+
+          
+          
+
+          
+            
+          
+          
+
+        </div>
+      </div>
+
+      
+      <!--noindex-->
+        <div class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+            
+            
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#DAV介绍"><span class="nav-number">1.</span> <span class="nav-text">DAV介绍</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#培训目标"><span class="nav-number">1.1.</span> <span class="nav-text">培训目标</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#DVA是什么？"><span class="nav-number">1.1.1.</span> <span class="nav-text">DVA是什么？</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#特性"><span class="nav-number">1.1.1.1.</span> <span class="nav-text">特性</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#DVA解决什么问题？"><span class="nav-number">1.1.1.2.</span> <span class="nav-text">DVA解决什么问题？</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#问题"><span class="nav-number">1.1.1.2.1.</span> <span class="nav-text">问题</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#解决方案"><span class="nav-number">1.1.1.2.2.</span> <span class="nav-text">解决方案</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#DVA项目的基本组成"><span class="nav-number">1.1.1.3.</span> <span class="nav-text">DVA项目的基本组成</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#项目的目录结构"><span class="nav-number">1.1.1.3.1.</span> <span class="nav-text">项目的目录结构</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#工作原理"><span class="nav-number">1.1.1.3.2.</span> <span class="nav-text">工作原理</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#DVA开发的工作流"><span class="nav-number">1.1.2.</span> <span class="nav-text">DVA开发的工作流</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#在开发中继续完善DVA"><span class="nav-number">1.1.3.</span> <span class="nav-text">在开发中继续完善DVA</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#完善创建action的过程。"><span class="nav-number">1.1.3.1.</span> <span class="nav-text">完善创建action的过程。</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#增加请求数据时的动态类型检查"><span class="nav-number">1.1.3.2.</span> <span class="nav-text">增加请求数据时的动态类型检查</span></a></li></ol></li></ol></li></ol></li></ol></div>
+            
+
+          </div>
+        </div>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+  
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Huang Jun</span>
+
+  
+
+  
+</div>
+
+
+
+
+
+
+
+
+
+        
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+    
+
+    
+  </div>
+
+  
+
+<script>
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+
+  
+
+
+  <script src="/js/src/utils.js?v=7.0.1"></script>
+
+  <script src="/js/src/motion.js?v=7.0.1"></script>
+
+
+
+  
+  
+
+
+  <script src="/js/src/affix.js?v=7.0.1"></script>
+
+  <script src="/js/src/schemes/pisces.js?v=7.0.1"></script>
+
+
+
+
+  
+  <script src="/js/src/scrollspy.js?v=7.0.1"></script>
+<script src="/js/src/post-details.js?v=7.0.1"></script>
+
+
+
+  
+
+
+  <script src="/js/src/next-boot.js?v=7.0.1"></script>
+
+
+  
+  
+
+
+  
+
+
+  
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
